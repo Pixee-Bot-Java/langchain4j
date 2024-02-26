@@ -40,9 +40,9 @@ public class RequestLoggingInterceptor implements Interceptor {
         return (String) StreamSupport.stream(headers.spliterator(), false).map((header) -> {
             String headerKey = (String)header.component1();
             String headerValue = (String)header.component2();
-            if (headerKey.equals("Authorization")) {
+            if ("Authorization".equals(headerKey)) {
                 headerValue = maskAuthorizationHeaderValue(headerValue);
-            } else if (headerKey.equals("api-key")) {
+            } else if ("api-key".equals(headerKey)) {
                 headerValue = maskApiKeyHeaderValue(headerValue);
             }
 

@@ -69,7 +69,7 @@ class PartsMapper {
         Image image = content.image();
         if (image.url() != null) {
             String mimeType = getOrDefault(image.mimeType(), () -> detectMimeType(image.url()));
-            if (image.url().getScheme().equals("gs")) {
+            if ("gs".equals(image.url().getScheme())) {
                 return fromMimeTypeAndData(mimeType, image.url());
             } else {
                 return fromMimeTypeAndData(mimeType, readBytes(image.url().toString()));

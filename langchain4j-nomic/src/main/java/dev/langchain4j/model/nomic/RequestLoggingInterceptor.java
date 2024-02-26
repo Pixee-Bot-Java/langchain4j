@@ -46,7 +46,7 @@ class RequestLoggingInterceptor implements Interceptor {
                 .map((header) -> {
                     String headerKey = header.component1();
                     String headerValue = header.component2();
-                    if (headerKey.equals("Authorization")) {
+                    if ("Authorization".equals(headerKey)) {
                         headerValue = maskAuthorizationHeaderValue(headerValue);
                     }
                     return String.format("[%s: %s]", headerKey, headerValue);

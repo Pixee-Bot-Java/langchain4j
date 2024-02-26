@@ -131,7 +131,7 @@ public class OpenAiTokenizer implements Tokenizer {
     }
 
     private int extraTokensPerMessage() {
-        if (modelName.equals("gpt-3.5-turbo-0301")) {
+        if ("gpt-3.5-turbo-0301".equals(modelName)) {
             return 4;
         } else {
             return 3;
@@ -139,7 +139,7 @@ public class OpenAiTokenizer implements Tokenizer {
     }
 
     private int extraTokensPerName() {
-        if (modelName.equals("gpt-3.5-turbo-0301")) {
+        if ("gpt-3.5-turbo-0301".equals(modelName)) {
             return -1; // if there's a name, the role is omitted
         } else {
             return 1;

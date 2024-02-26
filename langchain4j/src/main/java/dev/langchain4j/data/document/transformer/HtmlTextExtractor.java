@@ -98,9 +98,9 @@ public class HtmlTextExtractor implements DocumentTransformer {
             String name = node.nodeName();
             if (node instanceof TextNode)
                 textBuilder.append(((TextNode) node).text());
-            else if (name.equals("li"))
+            else if ("li".equals(name))
                 textBuilder.append("\n * ");
-            else if (name.equals("dt"))
+            else if ("dt".equals(name))
                 textBuilder.append("  ");
             else if (in(name, "p", "h1", "h2", "h3", "h4", "h5", "h6", "tr"))
                 textBuilder.append("\n");
@@ -111,7 +111,7 @@ public class HtmlTextExtractor implements DocumentTransformer {
             String name = node.nodeName();
             if (in(name, "br", "dd", "dt", "p", "h1", "h2", "h3", "h4", "h5", "h6"))
                 textBuilder.append("\n");
-            else if (includeLinks && name.equals("a"))
+            else if (includeLinks && "a".equals(name))
                 textBuilder.append(format(" <%s>", node.absUrl("href")));
         }
 
