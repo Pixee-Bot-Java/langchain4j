@@ -3,6 +3,8 @@ package dev.langchain4j.data.document.source;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSource;
 import dev.langchain4j.data.document.Metadata;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +36,7 @@ public class UrlSource implements DocumentSource {
 
     public static UrlSource from(String url) {
         try {
-            return new UrlSource(new URL(url));
+            return new UrlSource(Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
