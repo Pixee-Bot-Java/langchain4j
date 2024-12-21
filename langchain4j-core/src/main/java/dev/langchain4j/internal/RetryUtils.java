@@ -1,5 +1,6 @@
 package dev.langchain4j.internal;
 
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -143,7 +144,7 @@ public final class RetryUtils {
          * @return The jitter delay in milliseconds.
          */
         public int jitterDelayMillis(int attempt) {
-            Random rand = new Random();
+            Random rand = new SecureRandom();
             double delay = rawDelayMs(attempt);
             double jitter = delay * jitterScale;
             return (int) (delay + rand.nextInt((int) jitter));
