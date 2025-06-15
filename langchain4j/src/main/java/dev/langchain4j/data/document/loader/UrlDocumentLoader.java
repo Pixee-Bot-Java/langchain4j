@@ -4,6 +4,8 @@ import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentLoader;
 import dev.langchain4j.data.document.DocumentParser;
 import dev.langchain4j.data.document.source.UrlSource;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,7 +43,7 @@ public class UrlDocumentLoader {
      */
     static URL createUrl(String url) {
         try {
-            return new URL(url);
+            return Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException(e);
         }
