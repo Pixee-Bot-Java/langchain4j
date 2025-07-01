@@ -5,6 +5,7 @@ import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
+import java.security.SecureRandom;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -96,7 +97,7 @@ class VertexAiEmbeddingModelIT {
         for (int i = 0; i < count; i++) {
             StringBuilder sb = new StringBuilder();
             do {
-                String nextWord = words[new Random().nextInt(words.length)];
+                String nextWord = words[new SecureRandom().nextInt(words.length)];
                 if (sb.length() + nextWord.length() + 1 < maxLength) {
                     sb.append(nextWord).append(" ");
                 } else break;
